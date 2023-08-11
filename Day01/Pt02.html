@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3> problem 1</h3>
+    <input id = "problem1">
+    <button onclick="add()">Add</button>
+    <p id = "result1"></p>
+    
+    <h3> problem 2</h3>
+    <input id = "problem2">
+    <button onclick="Multiply()">GUGUDAN</button>
+    <p id = "result2"></p>
+    
+    <script>
+        function add(){
+            let x = Number.parseInt(document.getElementById("problem1").value)
+            let y = 0;
+            for(let i = 1; i <= x; i++){
+                y += i;
+            }
+            let result1 = document.getElementById("result1");
+
+            result1.innerHTML = `${y}`
+        }
+
+        function Multiply(){
+            let x = Number.parseInt(document.getElementById("problem2").value)
+            let y = 0;
+            let result2 = document.getElementById("result2");
+            for(let i = 1; i <= x; i++){
+                result2.innerHTML += `${i} X ${x} = ${i * x}` + "<br>"
+            }
+        }
+    </script>
+
+
+</body>
+</html>
