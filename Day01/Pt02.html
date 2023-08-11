@@ -15,6 +15,12 @@
     <input id = "problem2">
     <button onclick="Multiply()">GUGUDAN</button>
     <p id = "result2"></p>
+
+    <h3> problem 3</h3>
+    <input id = "word">
+    <input id = "meaning">
+    <button onclick="addWord()">Add Word</button>
+    <p id = "result3"></p>
     
     <script>
         function add(){
@@ -34,6 +40,21 @@
             let result2 = document.getElementById("result2");
             for(let i = 1; i <= x; i++){
                 result2.innerHTML += `${i} X ${x} = ${i * x}` + "<br>"
+            }
+        }
+
+        let words= {};
+
+
+        function addWord(){
+            let x = document.getElementById("word").value;
+            let y = document.getElementById("meaning").value;
+            let result3 = document.getElementById("result3");
+            
+            words[x] = y;
+
+            for(let i in words){
+                result3.innerHTML += `${i} : ${words[i]}` + "<br>"
             }
         }
     </script>
