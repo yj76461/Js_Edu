@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1" value="A">Button A</button>
+    <button id="btn2">Button B</button>
+
+    <input value="zzz" id="input1">
+
+    <script>
+        let clickListener = (e) => {
+            let value = e.target.value;
+            let innerHTML = e.target.innerHTML;
+
+            console.log(`value : ${value} innerHTML : ${innerHTML}`);
+        }
+
+        document.addEventListener("DOMContentLoaded", e =>{
+            document.getElementById("btn1").addEventListener("click", clickListener);
+            document.getElementById("btn2").addEventListener("click", clickListener);
+            document.getElementById("input1").addEventListener("click", clickListener);
+        })
+
+        
+    </script>
+</body>
+</html>
