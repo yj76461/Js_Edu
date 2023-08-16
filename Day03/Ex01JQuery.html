@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <!--$("선택자")
+        <body> : $("body")
+        <x id="user" class="login-form"> : $("#user") $(".login-form")
+        <y id="password" class="login-form"> : $("#password") $(".login-form")
+    -->
+    <button id="btn">CLick me!</button>
+    <p id="p1">Can You Remove Me?</p>
+    <script>
+        // document.addEventListner("DOMContentLoaded", func)
+        // $(document).ready(func)
+        // $(func)
+
+        $(document).ready((e) =>{
+            $("#btn").click((e) =>{$("#p1").hide()})
+        })
+    </script>
+</body>
+</html>

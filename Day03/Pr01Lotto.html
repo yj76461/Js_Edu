@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <input id="n1" style="width: 30px;">
+    <input id="n2" style="width: 30px;">
+    <input id="n3" style="width: 30px;">
+    <input id="n4" style="width: 30px;">
+    <input id="n5" style="width: 30px;">
+    <input id="n6" style="width: 30px;">
+    <button id="submit">Submit</button>
+    <br>
+    <p id="result"></p>
+
+    <script>
+        let res = []
+        let vst = Array(46);
+        
+        vst.fill(0);
+        for(let i = 0; i < 6;i ++){
+            let tmp = parseInt((Math.random()) * 45) + 1
+            if(vst[tmp] == 0){
+                res[i] = tmp
+                vst[tmp] = 1;
+            }else{
+                i --;
+            }
+        }
+        console.log(vst)
+        console.log(res)
+        $(document).ready(function(){
+            $('#submit').click(function() {
+                let cnt = 0;
+                let nums = [parseInt($('#n1').val()),parseInt($('#n2').val()),
+                parseInt($('#n3').val()),parseInt($('#n4').val()),
+                parseInt($('#n5').val()),parseInt($('#n6').val())]
+                console.log(nums);
+                for(let i = 0; i < nums.length; i++){
+                    if(vst[nums[i]] == 1){
+                        vst[nums[i]] = 0;
+                        cnt ++;
+                    }
+                }
+                $('#result').html(`총 ${cnt} 개 맞췄습니다!`)
+            });
+            
+        });
+        
+
+        
+    </script>
+</body>
+</html>

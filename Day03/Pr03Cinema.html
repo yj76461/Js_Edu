@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <input id="date" type="date"/>
+    <button id="btn">Load</button>
+    <table id="factory_table" class="table" style="margin-top: 20px;">
+        <colgroup>
+            <col width="20%"/>
+            <col width="10%"/>
+            <col width="30%"/>
+            <col width="30%"/>
+            <col width="10%"/>
+        </colgroup>
+        
+        <thead>
+            <tr>
+                <th>순위</th>
+                <th>영화명</th>
+                <th>누적매출액</th>
+                <th>누적관람객수</th>
+                <th>전날대비매출액증감</th>
+                <th>전날대비관람객수증감</th>
+            </tr>
+        </thead>
+    
+        <tbody id="movies">
+            <tr>
+                <td> <input type="text" class="form-control" placeholder="설비명">  </td>
+                <td> <input type="text" class="form-control" placeholder="설치 대수" onkeypress="return event.charCode >= 48 && event.charCode <= 57">  </td>
+                <td> <input type="text" class="form-control" placeholder="기계 및 컨트롤러 정보">  </td>
+                <td> <input type="text" class="form-control" placeholder="공정명">  </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <script>
+        $(document).ready(() => {
+            $("#btn").click(() => {
+                var date = $('#date').val().split('-').join('')
+                var dateUrl = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=905b14fa8f942efc7a07b237f1a19dbf&targetDt=" + date + "&itemPerPage=10"
+                
+                $.ajax({
+                    url: dateUrl,
+                    type:'GET',
+                    dataType:'JSON',
+                    success:(data)=>{
+                        // 응답 성공 -> 400 error 같은 에러 응답도 성공으로 친다.
+                        console.log(data)
+                        //$("#p1").html(JSON.stringify(data))
+                        console.log(data.boxOfficeResult.dailyBoxOfficeList[3].rank)
+                        
+                        for(let i = 0; i < 10; i++){
+                            // console.log(`순위 : ${data.boxOfficeResult.dailyBoxOfficeList[i].rank} 
+                            // 영화명 : ${data.boxOfficeResult.dailyBoxOfficeList[i].movieNm}
+                            // 누적매출액 : ${data.boxOfficeResult.dailyBoxOfficeList[i].salesAmt}
+                            // 누적관람객수 : ${data.boxOfficeResult.dailyBoxOfficeList[i].audiCnt}
+                            // 전날대비매출액증감 : ${data.boxOfficeResult.dailyBoxOfficeList[i].salesChange}
+                            // 전날대비관람객수증감 : ${data.boxOfficeResult.dailyBoxOfficeList[i].audiChange}`)
+                            $("#p1").innerHTML += `순위 : ${data.boxOfficeResult.dailyBoxOfficeList[i].rank} 
+                            영화명 : ${data.boxOfficeResult.dailyBoxOfficeList[i].movieNm}
+                            누적매출액 : ${data.boxOfficeResult.dailyBoxOfficeList[i].salesAmt}
+                            누적관람객수 : ${data.boxOfficeResult.dailyBoxOfficeList[i].audiCnt}
+                            전날대비매출액증감 : ${data.boxOfficeResult.dailyBoxOfficeList[i].salesChange}
+                            전날대비관람객수증감 : ${data.boxOfficeResult.dailyBoxOfficeList[i].audiChange}` + "<br>"
+                        }
+                    },
+                    error:(e)=>{
+                        // 요청 실패
+                        console.log(`err : ${e.message}`)}
+                }); // ajax 실행
+                
+            })
+        })
+        </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!--[Load] 버튼 누르면
+        뒤에서 몰래 "https://api.github.com/users" 로 요청 보내기
+        => 응답은 JSON 으로 온다. 온 것을 <p>로 출력
+    -->
+    <button id="btn">Load</button>
+    <p id="p1"></p>
+    
+    <script>
+        $(document).ready(() => {
+            $("#btn").click(() => {
+                $.ajax({
+                    url:"https://api.github.com/users",
+                    type:'GET',
+                    dataType:'JSON',
+                    success:(data)=>{
+                        // 응답 성공 -> 400 error 같은 에러 응답도 성공으로 친다.
+                        console.log(data)
+                        $("#p1").html(JSON.stringify(data))
+                    },
+                    error:(e)=>{
+                        // 요청 실패
+                        console.log(`err : ${e.message}`)}
+                }); // ajax 실행
+                
+            })
+        })
+
+
+    </script>
+</body>
+</html>

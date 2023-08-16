@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="./Ex06Src.js"></script>
+
+    <style>
+        .line-through {
+            text-decoration: line-through;
+        }
+    </style>
 </head>
 <body>
     <h1>To Do List</h1>
@@ -22,41 +28,23 @@
         
         document.addEventListener('DOMContentLoaded', function(){
             
-            // let btn = document.getElementById("register")
-            // let items = []
-            
-            // btn.addEventListener("click", (e) => {
-                
-                // let todo = document.getElementById("todo").value;
-                // let inputValue = todo.trim();
-
-                // items.push({todo:inputValue});
-
-                // console.log(items)
-
-                // todo.value = "";
-                
-                // let todoList = document.getElementById("todo-list")
-                // let li = document.createElement("li")
-                
-                // let item = items[items.length - 1];
-                // li.innerHTML = `${item.todo} <- 오늘 할 일`
-                // todoList.appendChild(li);
-                document.getElementById('due-date').min = getMinDate();
-                document.getElementById('todo').addEventListener('keydown', e => {
-                    if(e.key == "Enter")
-                        addItem()
-                })
-                document.getElementById('register').addEventListener('click', e => {
+            document.getElementById('due-date').min = getMinDate();
+            document.getElementById('todo').addEventListener('keydown', e => {
+                if(e.key == "Enter")
                     addItem()
-                })
-                document.getElementById('todo-list').addEventListener('click', e => {
-                    if(e.target.tagName == 'li'){
-                        e.target.style.textDecoration = (e.target.style.textDecoration == 'line-through') ? `` : `line-through`
-                    }
-                })
-
             })
+            document.getElementById('register').addEventListener('click', e => {
+                addItem()
+            })
+            document.getElementById('todo-list').addEventListener('click', e => {
+                console.log(e.target.tagName)
+                if(e.target.tagName == 'LI'){
+                    console.log("hihi")
+                    e.target.style.textDecoration = (e.target.style.textDecoration == 'line-through') ? `` : `line-through`
+                }
+            })
+
+        })
         // })
     </script>
 </body>
