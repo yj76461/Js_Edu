@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="GoBack()">Back</button>
+    <p id="p1"></p>
+    
+
+    <script>
+        function GoBack(){
+            history.back();
+        }
+    </script>
+    <script>
+        let str = "";
+        for(let i = 0; i < localStorage.length; i++)
+        {
+            if(localStorage.getItem(localStorage.key(i)) == "1"){
+                console.log(localStorage.key(i));
+                str += localStorage.key(i) + "<br>"
+            }
+        }
+        document.getElementById("p1").innerHTML = str;
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 웹스토리지 저장 포맷 : 키-값 쌍으로 저장
+        // 단, 값은 무조건 string만 가능
+
+        // 값 저장
+        window.sessionStorage.setItem('name', "john")
+        window.localStorage.setItem(`name`, `jane`)
+
+        // session storage : 탭 종료 혹은 윈도우 종료시 자동으로 삭제
+        // local storage : 직접 지우지 않는 한 삭제되지 않음
+        
+        // 객체 저장
+        let person ={
+            name: `Maria`,
+            age: 10
+        }
+
+        window.localStorage.setItem('person', JSON.stringify(person))
+
+        let data = localStorage.getItem('name')
+        alert(data)
+
+        data = JSON.parse(localStorage.getItem('person'))
+        alert(data.age)
+    </script>
+</body>
+</html>
